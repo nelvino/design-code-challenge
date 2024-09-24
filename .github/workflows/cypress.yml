@@ -25,7 +25,8 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run test:e2e
+        run: npm run test:e2e:dev
+        timeout-minutes: 10  
         env:
           # Set the URL of your app (if using a deployed URL for testing)
           CYPRESS_BASE_URL: http://localhost:4173
