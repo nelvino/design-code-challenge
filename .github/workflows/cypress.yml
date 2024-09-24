@@ -1,6 +1,5 @@
 name: Cypress E2E Tests
 
-# Run this workflow on pull requests and on pushes to the main branch
 on:
   push:
     branches:
@@ -19,12 +18,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests
+      - name: Start server and run Cypress
         uses: cypress-io/github-action@v5
         with:
-          start: npm run preview  # Starts your Vite server in preview mode
-          wait-on: http://localhost:4173  # Waits for the Vite server to be up
-          wait-on-timeout: 60  # Timeout in seconds
+          start: npm run preview
+          wait-on: http://localhost:4173
+          wait-on-timeout: 120 
+          record: false
+          browser: chrome
 
       # Upload screenshots if tests fail
       - name: Upload screenshots on failure
