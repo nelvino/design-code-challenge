@@ -2,9 +2,7 @@
   <div class="p-5">
     <TitleComponent title="Weekdays Between Two Dates" />
     <FormComponent :startDate="startDate" :endDate="endDate" @submit="calculateWeekdays" />
-    <div v-if="result !== null" class="notification is-info mt-4">
-      Weekdays between {{ startDate }} and {{ endDate }}: {{ result }}
-    </div>
+    <ResultComponent v-if="result !== null" :startDate="startDate" :endDate="endDate" :result="result" />
   </div>
 </template>
 
@@ -13,11 +11,13 @@ import { defineComponent, ref } from 'vue'
 import { weekdaysBetweenTwoDates } from '@/helpers/weekdays'
 import FormComponent from '../components/FormComponent.vue'
 import TitleComponent from '../components/TitleComponent.vue'
+import ResultComponent from '../components/ResultComponent.vue';
 
 export default defineComponent({
   components: {
     FormComponent,
-    TitleComponent
+    TitleComponent,
+    ResultComponent
   },
   setup() {
     const startDate = ref<string>('')
