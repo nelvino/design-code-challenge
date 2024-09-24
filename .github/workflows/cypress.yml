@@ -11,22 +11,33 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '22.7.0'
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run test:e2e:dev
-        timeout-minutes: 10  
-        env:
-          # Set the URL of your app (if using a deployed URL for testing)
-          CYPRESS_BASE_URL: http://localhost:4173
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm run preview  # Starts your Vite server in preview mode
+          wait-on: http://localhost:4173  # Waits for the Vite server to be up
+          wait-on-timeout: 60  # Timeout in seconds
+
+      # Upload screenshots if tests fail
+      - name: Upload screenshots on failure
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      # Upload videos for all test runs
+      - name: Upload Cypress videos
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
