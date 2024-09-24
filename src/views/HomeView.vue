@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconComponent from '../components/IconComponent.vue'
 import HomePageContent from '../components/HomePageContent.vue'
-const iconSrc = 'src/assets/nico-elvino-icon.jpg';
+import iconSrc from '@/assets/nico-elvino-icon.jpg';
 </script>
 
 <template>
