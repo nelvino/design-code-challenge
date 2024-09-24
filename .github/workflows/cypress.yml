@@ -10,34 +10,34 @@ on:
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Start server and run Cypress
-        uses: cypress-io/github-action@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          start: npm run preview
-          wait-on: http://localhost:4173
-          wait-on-timeout: 120 
-          record: false
-          browser: chrome
+          node-version: '16'
 
-      # Upload screenshots if tests fail
-      - name: Upload screenshots on failure
-        uses: actions/upload-artifact@v3
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Run Cypress E2E Tests
+        run: npm run test:e2e  # This will preview and run Cypress tests
+
+      # Upload Cypress screenshots if tests fail
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      # Upload videos for all test runs
-      - name: Upload Cypress videos
-        uses: actions/upload-artifact@v3
+      # Upload Cypress videos
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: cypress-videos
