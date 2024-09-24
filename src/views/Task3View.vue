@@ -6,9 +6,7 @@
       :endDate="secondDateInput"
       @submit="calculateBusinessDaysWithRules"
     />
-    <div v-if="businessDays !== null" class="notification is-info mt-4">
-      Business Days between {{ firstDateInput }} and {{ secondDateInput }}: {{ businessDays }}
-    </div>
+    <ResultComponent v-if="businessDays !== null" :startDate="firstDateInput" :endDate="secondDateInput" :result="businessDays" />
   </div>
 </template>
 
@@ -16,13 +14,15 @@
 import { defineComponent,ref } from 'vue'
 import FormComponent from '../components/FormComponent.vue'
 import TitleComponent from '../components/TitleComponent.vue'
+import ResultComponent from '../components/ResultComponent.vue';
 import { BusinessDaysBetweenTwoDatesWithRules } from '../helpers/businessDaysBetweenTwoDatesWithRules'
 import { publicHolidayRules } from '../helpers/holidayRules'
 
 export default defineComponent({
   components: {
     FormComponent,
-    TitleComponent
+    TitleComponent,
+    ResultComponent
   },
   setup() {
     const firstDateInput = ref<string>('')
