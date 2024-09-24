@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { weekdaysBetweenTwoDates } from '@/utils/dateHelpers'
+import { weekdaysBetweenTwoDates } from '@/helpers/weekdays';
 
 export default defineComponent({
   setup() {

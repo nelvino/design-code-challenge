@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { weekdaysBetweenTwoDates } from '@/utils/dateHelpers';
+import { weekdaysBetweenTwoDates } from '@/helpers/weekdays';
 
 describe('weekdaysBetweenTwoDates', () => {
   it('should return 4 weekdays between Monday 23/09/24 and Sunday 29/09/2025', () => {
