@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Task 2 - Business Days Between Two Dates (with fixed holidays)</h1>
+    <h1>Task 3 - Business Days Between Two Dates (with rules)</h1>
     <div>
       <label>First Date:</label>
       <input v-model="firstDateInput" type="date" />
@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BusinessDaysBetweenTwoDates } from '../helpers/businessDaysBetweenTwoDates'
-import { fixedHolidays } from '../helpers/holidayRules'
+import { BusinessDaysBetweenTwoDatesWithRules } from '../helpers/businessDaysBetweenTwoDatesWithRules'
+import { publicHolidayRules } from '../helpers/holidayRules'
 
 const firstDateInput = ref('')
 const secondDateInput = ref('')
@@ -28,7 +28,11 @@ const calculateBusinessDays = () => {
   const secondDate = new Date(secondDateInput.value)
 
   if (!isNaN(firstDate.getTime()) && !isNaN(secondDate.getTime())) {
-    businessDays.value = BusinessDaysBetweenTwoDates(firstDate, secondDate, fixedHolidays)
+    businessDays.value = BusinessDaysBetweenTwoDatesWithRules(
+      firstDate,
+      secondDate,
+      publicHolidayRules
+    )
   } else {
     businessDays.value = 0 // Handle invalid dates
   }
