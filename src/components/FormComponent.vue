@@ -5,6 +5,7 @@
       <input
         type="date"
         v-model="localStartDate"
+        data-cy="start-date"
         class="w-full px-4 py-2 text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       />
     </div>
@@ -13,12 +14,14 @@
       <input
         type="date"
         v-model="localEndDate"
+        data-cy="end-date"
         class="w-full px-4 py-2 text-gray-700 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       />
     </div>
     <div class="control">
       <button
         type="submit"
+        data-cy="submit"
         class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-indigo-700 transition duration-200 ease-in-out"
       >
         Calculate
