@@ -1,40 +1,58 @@
 <template>
-  <div>
-    <h1>Task 3 - Business Days Between Two Dates (with rules)</h1>
-    <div>
-      <label>First Date:</label>
-      <input v-model="firstDateInput" type="date" />
+  <div class="p-5">
+    <TitleComponent title="Business Days (with public holiday rules)" />
+    <FormComponent
+      :startDate="firstDateInput"
+      :endDate="secondDateInput"
+      @submit="calculateBusinessDaysWithRules"
+    />
+    <div v-if="businessDays !== null" class="notification is-info mt-4">
+      Business Days between {{ firstDateInput }} and {{ secondDateInput }}: {{ businessDays }}
     </div>
-    <div>
-      <label>Second Date:</label>
-      <input v-model="secondDateInput" type="date" />
-    </div>
-    <button @click="calculateBusinessDays">Calculate Business Days</button>
-    <p>Business Days: {{ businessDays }}</p>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+import { defineComponent,ref } from 'vue'
+import FormComponent from '../components/FormComponent.vue'
+import TitleComponent from '../components/TitleComponent.vue'
 import { BusinessDaysBetweenTwoDatesWithRules } from '../helpers/businessDaysBetweenTwoDatesWithRules'
 import { publicHolidayRules } from '../helpers/holidayRules'
 
-const firstDateInput = ref('')
-const secondDateInput = ref('')
-const businessDays = ref(0)
+export default defineComponent({
+  components: {
+    FormComponent,
+    TitleComponent
+  },
+  setup() {
+    const firstDateInput = ref<string>('')
+    const secondDateInput = ref<string>('')
+    const businessDays = ref<number | null>(null)
 
-const calculateBusinessDays = () => {
-  const firstDate = new Date(firstDateInput.value)
-  const secondDate = new Date(secondDateInput.value)
+    const calculateBusinessDaysWithRules = (dates: { startDate: string; endDate: string }) => {
+      const firstDate = new Date(dates.startDate)
+      const secondDate = new Date(dates.endDate)
 
-  if (!isNaN(firstDate.getTime()) && !isNaN(secondDate.getTime())) {
-    businessDays.value = BusinessDaysBetweenTwoDatesWithRules(
-      firstDate,
-      secondDate,
-      publicHolidayRules
-    )
-  } else {
-    businessDays.value = 0 // Handle invalid dates
+      if (!isNaN(firstDate.getTime()) && !isNaN(secondDate.getTime())) {
+        businessDays.value = BusinessDaysBetweenTwoDatesWithRules(
+          firstDate,
+          secondDate,
+          publicHolidayRules
+        )
+      } else {
+        businessDays.value = 0
+      }
+
+      firstDateInput.value = dates.startDate
+      secondDateInput.value = dates.endDate
+    }
+
+    return {
+      firstDateInput,
+      secondDateInput,
+      businessDays,
+      calculateBusinessDaysWithRules
+    }
   }
-}
+})
 </script>

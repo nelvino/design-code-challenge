@@ -1,36 +1,15 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-
+import { RouterView } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
+  <div class="flex flex-col min-h-screen">
+    <header class="fixed top-0 w-full z-50">
       <NavBar />
-    </div>
-  </header>
-  <router-view />
-  <!-- <RouterView /> -->
+    </header>
+    <main class="flex-grow pt-16 md:pt-20 w-full max-w-screen-lg mx-auto px-4 md:px-8">
+      <router-view />
+    </main>
+  </div>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
