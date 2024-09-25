@@ -14,11 +14,13 @@ This project implements:
 
 ## Tasks Implemented
 
-	1.	Task 1: Weekdays Between Two Dates
+### Task 1: Weekdays Between Two Dates
 Calculates weekdays (Monday-Friday) between two given dates.
-	2.	Task 2: Business Days Between Two Dates (With Fixed Holidays)
+
+### Task 2: Business Days Between Two Dates (With Fixed Holidays)
 Extends Task 1 by excluding public holidays from the business days count.
-	3.	Task 3: Business Days Between Two Dates (With Dynamic Holiday Rules)
+
+### Task 3: Business Days Between Two Dates (With Dynamic Holiday Rules)
 Further extends Task 2 by handling complex holiday rules, including dynamic date shifting for holidays falling on weekends.
 
 ## Key Features
@@ -37,7 +39,9 @@ Further extends Task 2 by handling complex holiday rules, including dynamic date
 	•	Tailwind CSS: Modern styling framework for responsive design.
 	•	Vitest: Unit testing framework.
 	•	Cypress: End-to-end testing.
-	•	Vite: Fast build tool with excellent development server support.
+	•	Vite: Fast build tool with excellent development server support.	
+	•	ESLint: For identifying and fixing code quality issues and ensuring code consistency.
+	•	Prettier: For automatic code formatting, ensuring clean and readable code throughout the project.
 
 ## Recommended IDE Setup
 
