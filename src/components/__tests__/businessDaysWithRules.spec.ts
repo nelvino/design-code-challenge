@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { BusinessDaysBetweenTwoDatesWithRules } from '../../helpers/businessDaysBetweenTwoDatesWithRules';
+import { BusinessDaysBetweenTwoDatesWithRules } from '../../helpers/businessDaysWithRules';
 import { publicHolidayRules } from '../../helpers/holidayRules';
 
 describe('BusinessDaysBetweenTwoDatesWithRules', () => {

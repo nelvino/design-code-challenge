@@ -1,9 +1,6 @@
-import { getFixedHolidays } from './holidayRules';
+import { getFixedHolidays } from './holidayRules'
 
-export function BusinessDaysBetweenTwoDates(
-  firstDate: Date,
-  secondDate: Date
-): number {
+export function BusinessDaysBetweenTwoDates(firstDate: Date, secondDate: Date): number {
   if (!(firstDate instanceof Date) || !(secondDate instanceof Date)) {
     throw new Error('Invalid date input')
   }
@@ -12,8 +9,8 @@ export function BusinessDaysBetweenTwoDates(
   let count = 0
   const currentDate = new Date(firstDate.getTime())
 
-  const year = firstDate.getFullYear();
-  const publicHolidays = getFixedHolidays(year);
+  const year = firstDate.getFullYear()
+  const publicHolidays = getFixedHolidays(year)
 
   currentDate.setDate(currentDate.getDate() + 1)
 
@@ -22,7 +19,7 @@ export function BusinessDaysBetweenTwoDates(
     const isWeekday = day !== 0 && day !== 6
     const isPublicHoliday = publicHolidays.some(
       (holiday) => holiday.toDateString() === currentDate.toDateString()
-    );
+    )
     if (isWeekday && !isPublicHoliday) {
       count++
     }
