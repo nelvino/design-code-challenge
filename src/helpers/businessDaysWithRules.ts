@@ -19,7 +19,6 @@ export function BusinessDaysBetweenTwoDatesWithRules(
 
     const isPublicHoliday = publicHolidayRules.some((rule) => rule.isHoliday(currentDate))
 
-    // Only count if it's a weekday and not a public holiday
     if (isWeekday && !isPublicHoliday) {
       count++
     }

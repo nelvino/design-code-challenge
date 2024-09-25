@@ -15,7 +15,7 @@ import { defineComponent,ref } from 'vue'
 import FormComponent from '../components/FormComponent.vue'
 import TitleComponent from '../components/TitleComponent.vue'
 import ResultComponent from '../components/ResultComponent.vue';
-import { BusinessDaysBetweenTwoDatesWithRules } from '../helpers/businessDaysBetweenTwoDatesWithRules'
+import { BusinessDaysBetweenTwoDatesWithRules } from '../helpers/businessDaysWithRules'
 import { publicHolidayRules } from '../helpers/holidayRules'
 
 export default defineComponent({

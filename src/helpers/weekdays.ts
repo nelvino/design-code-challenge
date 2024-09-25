@@ -13,7 +13,6 @@ export function weekdaysBetweenTwoDates(firstDate: Date, secondDate: Date): numb
 
   while (current <= end) {
     const day = current.getDay()
-    // Count if it’s a weekday (Mon-Fri)
     if (day >= 1 && day <= 5) {
       weekdayCount++
     }

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { BusinessDaysBetweenTwoDates } from '../../helpers/businessDaysBetweenTwoDates'
+import { BusinessDaysBetweenTwoDates } from '../../helpers/businessDays'
 
 describe('businessDaysBetweenTwoDates', () => {
   it('should return correct business days excluding weekends and holidays', () => {
