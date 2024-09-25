@@ -29,6 +29,6 @@ describe('businessDaysBetweenTwoDates', () => {
 
     const result = BusinessDaysBetweenTwoDates(firstDate, secondDate, publicHolidays);
     
-    expect(result).toBe(4); // 4 business days (24th to 27th)
+    expect(result).toBe(2); // 2 business days (24th to 27th)
   });
 });

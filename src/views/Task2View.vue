@@ -16,7 +16,6 @@ import FormComponent from '../components/FormComponent.vue'
 import TitleComponent from '../components/TitleComponent.vue'
 import ResultComponent from '../components/ResultComponent.vue';
 import { BusinessDaysBetweenTwoDates } from '../helpers/businessDaysBetweenTwoDates'
-import { fixedHolidays } from '../helpers/holidayRules'
 
 export default defineComponent({
   components: {
@@ -34,7 +33,7 @@ export default defineComponent({
       const secondDate = new Date(dates.endDate)
 
       if (!isNaN(firstDate.getTime()) && !isNaN(secondDate.getTime())) {
-        businessDays.value = BusinessDaysBetweenTwoDates(firstDate, secondDate, fixedHolidays)
+        businessDays.value = BusinessDaysBetweenTwoDates(firstDate, secondDate)
       } else {
         businessDays.value = 0 // Handle invalid dates
       }
