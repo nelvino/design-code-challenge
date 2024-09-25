@@ -5,7 +5,6 @@ export interface PublicHolidayRule {
   isHoliday: (date: Date) => boolean;
 }
 
-// Fixed holiday dates
 export function getFixedHolidays(year: number): Date[] {
   return [
     new Date(year, 0, 1),  // 1st January (New Year's Day)
