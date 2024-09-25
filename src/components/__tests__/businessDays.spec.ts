@@ -28,4 +28,13 @@ describe('businessDaysBetweenTwoDates', () => {
 
     expect(result).toBe(2) // 2 business days (24th to 27th)
   })
+
+  it('should handle cases with no public holidays correctly', () => {
+    const firstDate = new Date(2013, 9, 7)
+    const secondDate = new Date(2014, 0, 1)
+
+    const result = BusinessDaysBetweenTwoDates(firstDate, secondDate)
+
+    expect(result).toBe(59) // 2 business days (24th to 27th)
+  })
 })

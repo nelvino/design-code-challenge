@@ -19,4 +19,10 @@ describe('weekdaysBetweenTwoDates', () => {
     const endDate = new Date('2013-10-09');
     expect(weekdaysBetweenTwoDates(startDate, endDate)).toBe(1);
   });
+
+  it('should handle cases with no public holidays correctly', () => {
+    const startDate = new Date('2013-10-07')
+    const endDate = new Date('2014-01-01')
+    expect(weekdaysBetweenTwoDates(startDate, endDate)).toBe(61);
+  })
 });
