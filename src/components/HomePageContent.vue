@@ -5,10 +5,11 @@ import ContentComponent from '../components/ContentComponent.vue'
 
 <template>
   <div class="text-center">
-    <TitleComponent title="Welcome to the Design Code Challenge <br class='hidden sm:block' /> made by Nico Elvino" />
-    <ContentComponent content="I created a simple Vue.js project to showcase my ability to implement solutions efficiently
-      and to use best practices with a modern stack. I aimed to solve the 3 Tasks mentioned on the
-      challenge, by implementing reusable components, styling them with Tailwind CSS, while writing
-      clean, maintainable and tested code." />
+    <TitleComponent
+      title="Welcome to the Design Code Challenge <br class='hidden sm:block' /> made by Nico Elvino"
+    />
+    <ContentComponent
+      content="I developed a Vue.js project to demonstrate efficient solution implementation using best practices and a modern tech stack. The project solves the 3 Tasks from the challenge by incorporating reusable components, Tailwind CSS for styling, and ensuring clean, maintainable, and tested code"
+    />
   </div>
 </template>
