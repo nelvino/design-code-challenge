@@ -1,4 +1,4 @@
-import type { PublicHolidayRule } from './holidayRules'
+import type { PublicHolidayRule, getFixedHolidays } from './holidayRules'
 
 export function BusinessDaysBetweenTwoDatesWithRules(
   firstDate: Date,

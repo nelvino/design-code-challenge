@@ -5,14 +5,15 @@ export interface PublicHolidayRule {
   isHoliday: (date: Date) => boolean;
 }
 
-// Fixed holiday dates
-export const fixedHolidays: Date[] = [
-  new Date('2024-01-01'),
-  new Date('2024-01-26'),
-  new Date('2024-04-25'),
-  new Date('2024-12-25'),
-  new Date('2024-12-26'),
-];
+export function getFixedHolidays(year: number): Date[] {
+  return [
+    new Date(year, 0, 1),  // 1st January (New Year's Day)
+    new Date(year, 0, 26), // 26th January (Australia Day)
+    new Date(year, 3, 25), // 25th April (Anzac Day)
+    new Date(year, 11, 25), // 25th December (Christmas Day)
+    new Date(year, 11, 26)  // 26th December (Boxing Day)
+  ];
+}
 
 // New logic for Task 3, Public holidays shift if it falls on a weekend
 const shiftingHolidays: PublicHolidayRule[] = [
@@ -92,7 +93,11 @@ const dynamicHolidays: PublicHolidayRule[] = [
 export const publicHolidayRules: PublicHolidayRule[] = [
   {
     name: 'Static Holidays',
-    isHoliday: (date: Date) => fixedHolidays.some(holiday => holiday.getTime() === date.getTime()),
+    isHoliday: (date: Date) => {
+      const year = date.getFullYear();
+      const fixedHolidaysForYear = getFixedHolidays(year);
+      return fixedHolidaysForYear.some(holiday => holiday.getTime() === date.getTime());
+    },
   },
   ...shiftingHolidays,
   ...dynamicHolidays,
