@@ -1,8 +1,11 @@
 <template>
   <form @submit.prevent="onSubmit" class="bg-white p-6 rounded-lg shadow-md space-y-6">
     <div class="field">
-      <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+      <label for="start-date" class="block text-sm font-medium text-gray-700 mb-2"
+        >Start Date</label
+      >
       <input
+        id="start-date"
         type="date"
         v-model="localStartDate"
         data-cy="start-date"
@@ -10,8 +13,9 @@
       />
     </div>
     <div class="field">
-      <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+      <label for="end-date" class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
       <input
+        id="end-date"
         type="date"
         v-model="localEndDate"
         data-cy="end-date"
@@ -31,39 +35,39 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue'
 import type { PropType } from 'vue'
 
 export default defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: true,
+      required: true
     },
     endDate: {
       type: String as PropType<string>,
-      required: true,
-    },
+      required: true
+    }
   },
   emits: ['submit'],
   setup(props, { emit }) {
-    const localStartDate = ref(props.startDate);
-    const localEndDate = ref(props.endDate);
+    const localStartDate = ref(props.startDate)
+    const localEndDate = ref(props.endDate)
 
     const onSubmit = () => {
       if (localStartDate.value && localEndDate.value) {
         emit('submit', {
           startDate: localStartDate.value,
-          endDate: localEndDate.value,
-        });
+          endDate: localEndDate.value
+        })
       }
-    };
+    }
 
     return {
       localStartDate,
       localEndDate,
-      onSubmit,
-    };
-  },
-});
+      onSubmit
+    }
+  }
+})
 </script>
