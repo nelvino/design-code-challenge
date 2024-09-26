@@ -1,8 +1,10 @@
 import type { PublicHolidayRule } from './holidayRules'
 
-export function BusinessDaysBetweenTwoDates(firstDate: Date,
+export function BusinessDaysBetweenTwoDates(
+  firstDate: Date,
   secondDate: Date,
-  publicHolidays: Date[] | PublicHolidayRule[]): number {
+  publicHolidays: Date[] | PublicHolidayRule[]
+): number {
   if (!(firstDate instanceof Date) || !(secondDate instanceof Date)) {
     throw new Error('Invalid date input')
   }
@@ -13,15 +15,36 @@ export function BusinessDaysBetweenTwoDates(firstDate: Date,
 
   currentDate.setDate(currentDate.getDate() + 1)
 
+  // Helper function to compare only the date part, not time
+  const isSameDate = (date1: Date, date2: Date) => {
+    return date1.toDateString() === date2.toDateString()
+  }
+
   while (currentDate < secondDate) {
     const day = currentDate.getDay()
-    const isWeekday = day !== 0 && day !== 6
-    const isPublicHoliday = Array.isArray(publicHolidays) && publicHolidays[0] instanceof Date
-    ? (publicHolidays as Date[]).some(holiday => holiday.getTime() === currentDate.getTime()) // Task 2 logic
-    : (publicHolidays as PublicHolidayRule[]).some(rule => rule.isHoliday(currentDate));
+    const isWeekday = day !== 0 && day !== 6 // Check if it's Monday to Friday
+
+    let isPublicHoliday = false
+
+    // Task 2: Fixed holidays logic
+    if (Array.isArray(publicHolidays) && publicHolidays[0] instanceof Date) {
+      isPublicHoliday = (publicHolidays as Date[]).some(holiday => 
+        isSameDate(holiday, currentDate)
+      )
+    }
+
+    // Task 3: Public holiday rules logic (Ensure no overlap)
+    else if (Array.isArray(publicHolidays) && publicHolidays[0] instanceof Object) {
+      isPublicHoliday = (publicHolidays as PublicHolidayRule[]).some(rule => 
+        rule.isHoliday(currentDate)
+      )
+    }
+
+    // Count only weekdays that are not public holidays
     if (isWeekday && !isPublicHoliday) {
       count++
     }
+
     currentDate.setDate(currentDate.getDate() + 1)
   }
 
