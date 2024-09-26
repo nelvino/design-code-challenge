@@ -15,7 +15,8 @@ import { defineComponent, ref } from 'vue'
 import FormComponent from '../components/FormComponent.vue'
 import TitleComponent from '../components/TitleComponent.vue'
 import ResultComponent from '../components/ResultComponent.vue';
-import { BusinessDaysBetweenTwoDates } from '../helpers/businessDays'
+import { BusinessDaysBetweenTwoDates } from '../helpers/businessDaysBetweenTwoDates'
+import { getFixedHolidays } from '../helpers/holidayRules';
 
 export default defineComponent({
   components: {
@@ -31,14 +32,14 @@ export default defineComponent({
     const calculateBusinessDays = (dates: { startDate: string; endDate: string }) => {
       const firstDate = new Date(dates.startDate)
       const secondDate = new Date(dates.endDate)
+      const publicHolidays = getFixedHolidays(firstDate.getFullYear());
 
       if (!isNaN(firstDate.getTime()) && !isNaN(secondDate.getTime())) {
-        businessDays.value = BusinessDaysBetweenTwoDates(firstDate, secondDate)
+        businessDays.value = BusinessDaysBetweenTwoDates(firstDate, secondDate, publicHolidays)
       } else {
-        businessDays.value = 0 // Handle invalid dates
+        businessDays.value = 0
       }
 
-      // Update the inputs to reflect the form submission
       firstDateInput.value = dates.startDate
       secondDateInput.value = dates.endDate
     }
