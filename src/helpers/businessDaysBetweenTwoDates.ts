@@ -28,19 +28,19 @@ export function BusinessDaysBetweenTwoDates(
 
     // Task 2: Fixed holidays logic
     if (Array.isArray(publicHolidays) && publicHolidays[0] instanceof Date) {
-      isPublicHoliday = (publicHolidays as Date[]).some(holiday => 
+      isPublicHoliday = (publicHolidays as Date[]).some((holiday) =>
         isSameDate(holiday, currentDate)
       )
     }
 
     // Task 3: Public holiday rules logic (Ensure no overlap)
     else if (Array.isArray(publicHolidays) && publicHolidays[0] instanceof Object) {
-      isPublicHoliday = (publicHolidays as PublicHolidayRule[]).some(rule => 
-        rule.isHoliday(currentDate)
-      )
+      isPublicHoliday = (publicHolidays as PublicHolidayRule[]).some((rule) => {
+        const isHoliday = rule.isHoliday(currentDate)
+        return isHoliday
+      })
     }
 
-    // Count only weekdays that are not public holidays
     if (isWeekday && !isPublicHoliday) {
       count++
     }
