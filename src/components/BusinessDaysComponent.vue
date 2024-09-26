@@ -17,9 +17,9 @@
   
   <script lang="ts">
   import { defineComponent, ref } from 'vue'
-  import FormComponent from '../components/FormComponent.vue'
-  import TitleComponent from '../components/TitleComponent.vue'
-  import ResultComponent from '../components/ResultComponent.vue'
+  import FormComponent from './FormComponent.vue'
+  import TitleComponent from './TitleComponent.vue'
+  import ResultComponent from './ResultComponent.vue'
   import { BusinessDaysBetweenTwoDates } from '../helpers/businessDaysBetweenTwoDates'
   import { getFixedHolidays, publicHolidayRules } from '../helpers/holidayRules'
   
